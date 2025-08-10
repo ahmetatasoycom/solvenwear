@@ -16,7 +16,8 @@
   </head>
   <body class="bg-neutral-950">
     <nav
-      class="flex items-center justify-between bg-transparent rounded-xl mx-auto max-w-4xl mt-4 p-4 backdrop-blur-sm bg-opacity-30">
+  class="relative z-50 flex items-center justify-between bg-transparent rounded-xl mx-auto max-w-4xl mt-4 p-4 backdrop-blur-sm bg-opacity-30"
+>
       <div>
         <a
           href="index.html"
@@ -25,7 +26,7 @@
           <img
             src="src/images/SolvenCrownWhite.png"
             alt="Logo"
-            class="h-12 w-auto"
+            class="h-14 w-auto"
           />
         </a>
       </div>
@@ -52,18 +53,11 @@
         <span class="animated-gradient-text">Launching Soon</span>
       </h2>
 
-      <button
-        id="showEmailFormButton"
-        class="mt-8 py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-      >
-        Join the Community
-      </button>
-
       <div id="email-form-container" class="mt-4">
         <input
           type="email"
           id="email"
-          placeholder="E-posta adresinizi girin"
+          placeholder="Enter your email address"
           required
           class="p-3 bg-neutral-800 text-white rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 w-72"
         />
@@ -71,7 +65,7 @@
           id="submit-email"
           class="mt-4 py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
         >
-          Gönder
+          Join the Community
         </button>
       </div>
 
@@ -92,7 +86,7 @@
     ></div>
 
     <script src="src/script.js"></script>
-    
+
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
       import {
@@ -142,6 +136,35 @@
             alert("Lütfen geçerli bir e-posta adresi girin.");
           }
         });
+
+      function countdown() {
+        const countDate = new Date("Sep 04, 2025 00:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = countDate - now;
+
+        // Gün, saat, dakika, saniye hesaplama
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Sayacın DOM'a yazdırılması
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        // Sayaç bitince bir şeyler yapmak isterseniz
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML = "Launch Time!";
+        }
+      }
+
+      // Fonksiyonu her saniye çağır
+      const x = setInterval(countdown, 1000);
     </script>
   </body>
 </html>
