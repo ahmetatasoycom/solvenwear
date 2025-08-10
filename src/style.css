@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  overflow-y: scroll;
+}
+
+
+
+/* Sayfa açılışında içeriğin yavaşça belirmesi için */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Sayfa kapanışında içeriğin yavaşça kaybolması için */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Sayfa geçişinde ekranı dolduran animasyon */
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* Sayfanın ilk yüklenmesinde fade-in animasyonu */
+body.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Sayfa geçişinde body'nin saydamlaşması */
+body.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+/* Sayfa geçiş animasyonu için kaplama div'i */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #9333ea, #3b82f6); /* Mor-mavi gradyan */
+    z-index: 9999;
+    pointer-events: none;
+    animation: slideUp 0.5s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+
+
+
+
+.nav-underline {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-btn:hover .nav-underline {
+  transform: scaleX(1);
+}
+
+.scale-x-100 {
+  transform: scaleX(1) !important;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0c0a09;
+  /* Tailwind's bg-neutral-950 */
+}
+
+/* Navbar link alt çizgi animasyonu için özel CSS */
+.nav-btn:hover .nav-underline {
+  transform: scaleX(1);
+}
+
+/* Floating panels animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(var(--rotation));
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(calc(var(--rotation) + 1deg));
+  }
+
+  100% {
+    transform: translateY(0px) rotate(var(--rotation));
+  }
+}
+
+.float-animation-1 {
+  animation: float 5s ease-in-out infinite;
+  --rotation: -12deg;
+}
+
+.float-animation-2 {
+  animation: float 6s ease-in-out infinite;
+  --rotation: 8deg;
+}
+
+.float-animation-3 {
+  animation: float 7s ease-in-out infinite;
+  --rotation: -18deg;
+}
+
+/* Full Stack yazısı için dinamik gradient animasyonu */
+.animated-gradient-text {
+  background-size: 200% auto;
+  /* Gradient boyutunu metinden daha geniş yap */
+  /* Mor ve mavi tonlarında geçiş */
+  background-image: linear-gradient(to right, #6d28d9, #8b5cf6, #3b82f6, #6d28d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 4s linear infinite;
+  /* Animasyon hızı ve tekrarı */
+}
+
+@keyframes gradient-animation {
+  to {
+    background-position: 200% center;
+    /* Arkaplanı hareket ettirerek geçişi sağla */
+  }
+}
+
+.animated-gradient-text2 {
+  background-size: 200% auto;
+  /* Gradient boyutunu metinden daha geniş yap */
+  /* Mor ve mavi tonlarında geçiş */
+  background-image: linear-gradient(to right, #d96f28, #f68d5c, #f68f3b, #d96f28);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 4s linear infinite;
+  /* Animasyon hızı ve tekrarı */
+}
+
+@keyframes gradient-animation {
+  to {
+    background-position: 200% center;
+    /* Arkaplanı hareket ettirerek geçişi sağla */
+  }
+}
